@@ -23,7 +23,7 @@ Route::post('/produkdelete', 'ProductController@delete');
 Route::get('/updateproduct/{id}', function ($id) {
     $product = DB::table('products')->where([['id', '=',$id]])->get();
     return view('product/update',['product' => $product]);
-});
+})->middleware(['auth']);
 
 Route::get('/listpenjualan', 'PenjualanController@list');
 Route::post('/penjualandelete', 'PenjualanController@penjualandelete');
@@ -41,13 +41,13 @@ Route::get('/statusdetail/{id}', function ($id) {
      $productss[] = $products[0];
     }
     return view('status/detail',['data' => $pembayaran,'code' => $id,'penjualan' => $penjualan,'product' => $productss]);
-});
+})->middleware(['auth']);
 Route::get('/statustambah/{id}', function ($id) {
     return view('status/tambah',['code' => $id]);
-});
+})->middleware(['auth']);
 Route::get('/resi/{id}', function ($id) {
     return view('status/resi',['code' => $id]);
-});
+})->middleware(['auth']);
 Route::post('/addstatus', 'StatusController@addstatus');
 Route::post('/addresi', 'StatusController@addresi');
 Route::post('/statusdelete', 'StatusController@delete');
