@@ -21,6 +21,7 @@
                                   <table id="tabel-data" class="table table-striped table-bordered" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>tgl</th>
                                             <th>kode</th>
                                             <th>nama</th>
                                             <th>nomor</th>
@@ -31,6 +32,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                        <th>tgl</th>
                                         <th>kode</th>
                                             <th>nama</th>
                                             <th>nomor</th>
@@ -43,6 +45,7 @@
                                         @if(count($data)>0)
                                         @foreach ($data as $data)
                                         <tr>
+                                            <td>{{$data->created_at}}</td>
                                             <td>{{$data->code}}</td>
                                             <td>{{$data->nama}}</td>
                                             <td>{{$data->alamat}}</td>
@@ -75,7 +78,9 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-     $('#tabel-data').DataTable();
+     $('#tabel-data').DataTable({
+        "order": [[ 0, "desc" ]]
+    });
 } );
 
     function deletea(id) {
